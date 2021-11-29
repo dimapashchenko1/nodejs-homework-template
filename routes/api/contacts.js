@@ -6,7 +6,7 @@ const {
   deleteContactById,
   addNewContact,
   contactUpdate,
-} = require("../../controllers");
+} = require("../../controllers/contacts");
 const { validationMiddleware } = require("../../middlewares");
 
 router.get("/", getAllContacts);

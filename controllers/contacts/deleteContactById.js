@@ -1,9 +1,9 @@
-const { getContact } = require("../model/index");
+const { removeContact } = require("../../model/contacts/index");
 
-const getContactById = async (req, res, next) => {
+const deleteContactById = async (req, res, next) => {
   try {
     const { contactId } = req.params;
-    const result = await getContact(contactId);
+    const result = await removeContact(contactId);
     if (!result) {
       res.status(404).json({
         status: "error",
@@ -15,11 +15,11 @@ const getContactById = async (req, res, next) => {
     res.json({
       status: "success",
       code: 200,
-      data: { result },
+      message: "Remove success",
     });
   } catch (error) {
     next(error);
   }
 };
 
-module.exports = getContactById;
+module.exports = deleteContactById;
