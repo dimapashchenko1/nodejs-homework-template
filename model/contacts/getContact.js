@@ -1,12 +1,8 @@
-const listContacts = require("./listContacts");
+const { Contacts } = require("../../schema/contactModel");
 
 const getContact = async (contactId) => {
-  const contacts = await listContacts();
-  const result = contacts.find((item) => String(item.id) === String(contactId));
-  if (!result) {
-    return null;
-  }
-  return result;
+  const searchContact = await Contacts.findById(contactId);
+  return searchContact;
 };
 
 module.exports = getContact;

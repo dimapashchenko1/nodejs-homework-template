@@ -1,21 +1,11 @@
-const path = require("path");
-const contactsPath = path.join(__dirname, "../../db/contacts.json");
-// const { listContacts } = require("./index");
+const { Contacts } = require("../../schema/contactModel");
 
 const updateContact = async (contactId, body) => {
-  const contacts = await listContacts();
-  if (!body) {
-    return null;
-  }
-  const idx = contacts.findIndex(
-    (item) => String(item.id) === String(contactId)
+  const getContactById = await Contacts.findOneAndUpdate(
+    { contactId },
+    { ...body },
+    { new: true }
   );
-  if (idx === -1) {
-    throw new Error(`Id ${contactId} not found`);
-  }
-  contacts[idx] = { ...contacts[idx], ...body };
-  await fs.writeFile(contactsPath, JSON.stringify(contacts));
-  return contacts[idx];
+  return getContactById;
 };
-
 module.exports = updateContact;
