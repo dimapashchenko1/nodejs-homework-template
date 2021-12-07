@@ -1,5 +1,4 @@
-const validationMiddleware = require("./contacts");
+const validation = require("./validation");
+const authenticate = require("./authenticate");
 
-module.exports = {
-  validationMiddleware,
-};
+module.exports = { validation, authenticate };
