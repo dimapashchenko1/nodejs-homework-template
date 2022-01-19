@@ -13,6 +13,10 @@ router.post("/users/logout", authenticate, controllers.logout);
 
 router.get("/users/current", authenticate, controllers.getCurrentUser);
 
+router.post("/users/verify", controllers.resendVerify);
+
+router.get("/users/verify/:verificationToken", controllers.verify);
+
 router.patch(
   "/users/avatars",
   authenticate,
